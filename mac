@@ -95,6 +95,8 @@ fi
 
 fancy_echo "Updating Homebrew formulae ..."
 brew update
+
+brew tap caskroom/versions
 brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
@@ -132,7 +134,36 @@ brew "ruby-build"
 # Databases
 brew "postgres", restart_service: true
 brew "redis", restart_service: true
+
+# browser
+# cask firefox-aurora
+cask "google-chrome"
+# cask google-chrome-canary
+cask "opera-next"
+
+# development
+cask "sublime-text-3"
+cask "filezilla"
+cask "kaleidoscope"
+cask "iterm2"
+# cask source-tree
+cask "virtualbox"
+cask "dash"
+cask "atom"
+
+# other
+cask "alfred"
+cask "divvy" # to split and organize windows
+cask "caffeine" # to keep mac os awake 
+cask "rescuetime" # to log time 
+cask "dropbox"
+cask "mou"
+cask "skype"
+cask "spotify"
+cask "utorrent"
 EOF
+
+
 
 fancy_echo "Configuring Ruby ..."
 find_latest_ruby() {
