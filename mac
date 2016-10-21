@@ -62,7 +62,7 @@ case "$SHELL" in
   */zsh) : ;;
   *)
     fancy_echo "Changing your shell to zsh ..."
-      chsh -s "$(which zsh)"
+    chsh -s "$(which zsh)"
     ;;
 esac
 
@@ -77,15 +77,15 @@ gem_install_or_update() {
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
-    curl -fsS \
-      'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
+  curl -fsS \
+    'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
-    append_to_zshrc '# recommended by brew doctor'
+  append_to_zshrc '# recommended by brew doctor'
 
-    # shellcheck disable=SC2016
-    append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
+  # shellcheck disable=SC2016
+  append_to_zshrc 'export PATH="/usr/local/bin:$PATH"' 1
 
-    export PATH="/usr/local/bin:$PATH"
+  export PATH="/usr/local/bin:$PATH"
 fi
 
 if brew list | grep -Fq brew-cask; then
@@ -96,6 +96,7 @@ fi
 fancy_echo "Updating Homebrew formulae ..."
 brew update
 
+brew tap Goles/battery
 brew tap caskroom/versions
 brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
@@ -111,6 +112,12 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "zsh"
+brew "battery"
+brew "spark"
+brew "htop"
+brew "fzf"
+brew "chrome-cli"
+brew "urlview"
 
 # Heroku
 brew "heroku-toolbelt"
@@ -130,6 +137,7 @@ brew "libyaml" # should come after openssl
 brew "node"
 brew "rbenv"
 brew "ruby-build"
+brew "npm"
 
 # Databases
 brew "postgres", restart_service: true
@@ -154,8 +162,8 @@ cask "atom"
 # other
 cask "alfred"
 cask "divvy" # to split and organize windows
-cask "caffeine" # to keep mac os awake 
-cask "rescuetime" # to log time 
+cask "caffeine" # to keep mac os awake
+cask "rescuetime" # to log time
 cask "dropbox"
 cask "mou"
 cask "skype"
@@ -163,6 +171,8 @@ cask "spotify"
 cask "utorrent"
 EOF
 
+fancy_echo "Installing npm packages"
+npm install -g is-online-cli
 
 
 fancy_echo "Configuring Ruby ..."
@@ -191,3 +201,11 @@ if [ -f "$HOME/.laptop.local" ]; then
   # shellcheck disable=SC1090
   . "$HOME/.laptop.local"
 fi
+
+
+# ctags integration
+\curl -sSL https://get.rvm.io | bash -s stable --rails
+gem install gem-ctags
+gem ctags
+echo gem-ctags >> ~/.rvm/gemsets/global.gems
+
