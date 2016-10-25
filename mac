@@ -158,6 +158,8 @@ cask "iterm2"
 cask "virtualbox"
 cask "dash"
 cask "atom"
+cask "vagrant"
+cask "vagrant-manager"
 
 # other
 cask "alfred"
