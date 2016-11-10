@@ -68,5 +68,7 @@ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 sudo apt-get install zsh
 
+## silver searcher
+apt-get install silversearcher-ag
 
 
