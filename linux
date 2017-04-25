@@ -41,6 +41,7 @@ sudo apt-get -y install \
     build-essential python python3-dev python-pip python-dev \
 	postgresql postgresql-contrib spotify-client nodejs docker-engine
 
+sudo apt-get install nautilus-sendto nautilus-actions nautilus-image-converter nautilus-compare nautilus-columns nautilus-admin nautilus-image-manipulator nautilus-hide nautilus-data
 
 #btsync-user
 # uberwriter
