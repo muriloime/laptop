@@ -102,6 +102,7 @@ brew bundle --file=- <<EOF
 tap "thoughtbot/formulae"
 tap "homebrew/services"
 
+brew cask install shiftit
 # Unix
 brew "ctags"
 brew "git"
