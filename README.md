@@ -7,40 +7,26 @@ It can be run multiple times on the same machine safely.
 It installs, upgrades, or skips packages
 based on what is already installed on the machine.
 
-Requirements
-------------
-
-We support:
-
-* OS X Mavericks (10.9)
-* OS X Yosemite (10.10)
-* OS X El Capitan (10.11)
-
-Older versions may work but aren't regularly tested. Bug reports for older
-versions are welcome.
 
 Install
 -------
 
-Download, review, then execute the script:
+Download then execute the script:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
-less mac
+cd ~/code
+git clone git@github.com:muriloime/laptop.git
+cd laptop
 sh mac 2>&1 | tee ~/laptop.log
 ```
 
-Optionally, [install thoughtbot/dotfiles][dotfiles].
-
-[dotfiles]: https://github.com/thoughtbot/dotfiles#install
+[dotfiles]: https://github.com/muriloime/dotfiles
 
 Debugging
 ---------
 
 Your last Laptop run will be saved to `~/laptop.log`.
 Read through it to see if you can debug the issue yourself.
-If not, copy the lines where the script failed into a
-[new GitHub Issue](https://github.com/thoughtbot/laptop/issues/new) for us.
 Or, attach the whole log file as an attachment.
 
 What it sets up
@@ -168,7 +154,3 @@ See the `mac` script for examples.
 Laptop functions such as `fancy_echo` and
 `gem_install_or_update`
 can be used in your `~/.laptop.local`.
-
-See the [wiki](https://github.com/thoughtbot/laptop/wiki)
-for more customization examples.
-
