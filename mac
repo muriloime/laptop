@@ -127,6 +127,9 @@ brew "parity"
 # GitHub
 brew "hub"
 
+# Meteor 
+curl https://install.meteor.com/ | sh
+
 # Image manipulation
 brew "imagemagick"
 
