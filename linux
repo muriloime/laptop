@@ -1,6 +1,58 @@
 #!/bin/bash
+
+## Install snaps
+sudo apt install snapd
+
+sudo snap install skype --classic
+sudo snap install spotify
+sudo snap install chromium
+sudo snap install tor
+sudo snap install utorrent
+sudo snap install snap-store
+sudo snap install journey
+
+# work
+sudo snap install slack --classic
+sudo snap install zenkit
+sudo snap install wavebox
+sudo snap install tusk
+
+
+sudo snap install telegram-desktop
+
+# cloud 
+sudo snap install aws-cli --classic
+sudo snap install heroku --classic
+
+#development
+sudo snap install code --classic
+sudo snap install atom --classic
+sudo snap install docker
+sudo snap install postgresql
+sudo snap install cacher
+sudo snap install dataexplore
+sudo snap install neuronify
+sudo snap install gitkraken
+sudo snap install postman
+sudo snap install insomnia
+
+# photo/video
+sudo snap install blender --classic
+sudo snap install blender-tpaw
+sudo snap install gimp
+sudo snap install inkscape
+sudo snap install photoscape
+sudo snap install polarr
+
+#audio, news 
+sudo snap install poddr
+sudo snap install raven-reader
+
+1/0
+
+
 sudo apt-get install vim 
-# add repos
+#### Add repos
 sudo add-apt-repository ppa:w-vollprecht/ppa
 sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free"
 sudo add-apt-repository -y "deb http://linux.dropbox.com/ubuntu $(lsb_release -sc) main"
@@ -49,52 +101,6 @@ sudo apt-get -y  install docker-ce docker-compose
 
 sudo usermod -aG docker $USER
 
-sudo apt install snapd
-
-sudo snap install skype --classic
-sudo snap install spotify
-sudo snap install chromium
-sudo snap install tor
-sudo snap install utorrent
-sudo snap install snap-store
-sudo snap install journey
-
-# work
-sudo snap install slack --classic
-sudo snap install zenkit
-sudo snap install wavebox
-sudo snap install tusk
-
-
-sudo snap install telegram-desktop
-
-# cloud 
-sudo snap install aws-cli --classic
-sudo snap install heroku --classic
-
-#development
-sudo snap install code --classic
-sudo snap install atom --classic
-sudo snap install docker
-sudo snap install postgresql
-sudo snap install cacher
-sudo snap install dataexplore
-sudo snap install neuronify
-sudo snap install gitkraken
-sudo snap install postman
-sudo snap install insomnia
-
-# photo/video
-sudo snap install blender --classic
-sudo snap install blender-tpaw
-sudo snap install gimp
-sudo snap install inkscape
-sudo snap install photoscape
-sudo snap install polarr
-
-#audio, news 
-sudo snap install poddr
-sudo snap install raven-reader
 
 
 sudo apt-get install postgresql-client-common
