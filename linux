@@ -48,7 +48,9 @@ sudo snap install polarr
 sudo snap install poddr
 sudo snap install raven-reader
 
-1/0
+
+
+sudo apt-get install ripgrep
 
 
 sudo apt-get install vim 

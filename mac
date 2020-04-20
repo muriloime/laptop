@@ -118,6 +118,7 @@ brew "htop"
 brew "fzf"
 brew "chrome-cli"
 brew "urlview"
+brew "ripgrep"
 
 # Heroku
 brew "heroku/brew/heroku"
