@@ -103,6 +103,8 @@ tap "thoughtbot/formulae"
 tap "homebrew/services"
 
 # Unix
+brew "fasd"
+brew "httpie"
 brew "ctags"
 brew "git"
 brew "openssl"

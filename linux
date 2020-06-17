@@ -3,6 +3,9 @@
 # Install battery, configuration tools 
 sudo apt-get install -y smartmontools tlp tlp-rdw lm-sensors powertop htop
 
+sudo apt install fasd # haven't tried this. 
+sudo apt install httpie # haven't tried this. 
+
 ## Install snaps
 sudo apt install snapd
 
