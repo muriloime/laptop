@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# Install battery, configuration tools 
+sudo apt-get install -y smartmontools tlp tlp-rdw lm-sensors powertop htop
+
 ## Install snaps
 sudo apt install snapd
 
-sudo snap install skype --classic
 sudo snap install spotify
 sudo snap install chromium
 sudo snap install tor
@@ -12,9 +14,8 @@ sudo snap install snap-store
 sudo snap install journey
 
 # work
-sudo snap install slack --classic
 sudo snap install zenkit
-sudo snap install wavebox
+# sudo snap install wavebox
 sudo snap install tusk
 
 
@@ -28,19 +29,19 @@ sudo snap install heroku --classic
 sudo snap install code --classic
 sudo snap install atom --classic
 sudo snap install docker
-sudo snap install postgresql
 sudo snap install cacher
 sudo snap install dataexplore
 sudo snap install neuronify
-sudo snap install gitkraken
-sudo snap install postman
+# sudo snap install gitkraken
 sudo snap install insomnia
+sudo snap install ripgrep --classic
+sudo apt-get install vim 
+
+sudo snap install beekeeper-studio # sql client 
+sudo snap install robo3t-snap # mongo client 
 
 # photo/video
 sudo snap install blender --classic
-sudo snap install blender-tpaw
-sudo snap install gimp
-sudo snap install inkscape
 sudo snap install photoscape
 sudo snap install polarr
 
@@ -49,51 +50,43 @@ sudo snap install poddr
 sudo snap install raven-reader
 
 
-
-sudo apt-get install ripgrep
-
-
-sudo apt-get install vim 
 #### Add repos
 sudo add-apt-repository ppa:w-vollprecht/ppa
-sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free"
-sudo add-apt-repository -y "deb http://linux.dropbox.com/ubuntu $(lsb_release -sc) main"
+
+# dropbox
+
 sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
 sudo add-apt-repository -y "deb http://dl.google.com/linux/chrome/deb/ stable main"
 sudo add-apt-repository -y "deb http://dl.google.com/linux/talkplugin/deb/ stable main"
-sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+
 sudo add-apt-repository -y ppa:tuxpoldo/btsync
-sudo add-apt-repository -y ppa:freyja-dev/unity-tweak-tool-daily
 sudo add-apt-repository -y ppa:stefansundin/truecrypt
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
-sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
+#sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
 
-
 # basic update
-sudo apt-get -y --force-yes update
-sudo apt-get -y --force-yes upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 sudo apt-get install apt-transport-https ca-certificates linux-image-extra-$(uname -r)
 
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+# sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 # install apps
 sudo apt-get -y install \
-    libxss1 git gitk gitg \
-    virtualbox virtualbox-guest-additions-iso filezilla dropbox \
+    libxss1 git gitk gitg filezilla \
     gimp p7zip p7zip-full p7zip-rar  \
     indicator-multiload curl gparted dkms google-chrome-stable \
     mcrypt ssmtp mailutils mpack truecrypt\
     google-talkplugin linux-headers-generic \
-    build-essential tp-smapi-dkms thinkfan moc vlc guake tuxguitar\
-    build-essential python python3-dev python-pip python-dev \
-	postgresql postgresql-contrib nodejs 
+    tp-smapi-dkms thinkfan moc vlc guake tuxguitar\
+    build-essential python python3-dev python-pip python3-pip python-dev \
+	nodejs 
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
@@ -103,43 +96,40 @@ sudo apt-get -y  install docker-ce docker-compose
 
 sudo usermod -aG docker $USER
 
-
-
-sudo apt-get install postgresql-client-common
+sudo apt-get install postgresql-client-common postgresql postgresql-contrib 
 
 # not snaps
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
- 
-
-sudo apt-get install nautilus-sendto nautilus-actions nautilus-image-converter nautilus-compare nautilus-columns nautilus-admin nautilus-image-manipulator nautilus-hide nautilus-data
-
-#btsync-user
-# uberwriter
-#nautilus-open-terminal
 
 # ruby
-command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-\curl -L https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
-sudo rvm requirements
-rvm install ruby
-rvm use ruby --default
-rvm rubygems current
-gem install rails
+sudo apt install rbenv
+rbenv install 2.7.1
+gem install bundler
 
+# tmux
+suto apt-get install tmux 
 
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+# fasd, for fast search dirs and files 
+sudo add-apt-repository ppa:aacebedo/fasd
+sudo apt-get update
+sudo apt-get install fasd
 
-sudo pip3 install --upgrade $TF_BINARY_URL
+#### DATA 
+
+# TENSORFLOW 
+
+# export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+# sudo pip3 install --upgrade $TF_BINARY_URL
+
+## jupyter
 pip3 install jupyter bpython ipython
 
-
-
+##### heroku
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 sudo apt-get install zsh
 
 ## silver searcher
-apt-get install silversearcher-ag
+sudo apt-get install silversearcher-ag
 
 
