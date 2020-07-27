@@ -1,56 +1,46 @@
 
 flatpak install flathub org.mozilla.firefox
 
-# flatpak run org.mozilla.firefox
 flatpak install flathub org.gimp.GIMP
-
-# flatpak run org.gimp.GIMP
-
-flatpak install flathub us.zoom.Zoom
-# flatpak run us.zoom.Zoom
-
-flatpak install flathub org.telegram.desktop
-
-# flatpak run org.telegram.desktop
-
-flatpak install flathub com.leinardi.gst
-# flatpak run com.leinardi.gst
-flatpak install flathub com.leinardi.gwe
-
-
 flatpak install flathub org.gnome.Evolution
-
-flatpak run org.gnome.Evolution
-
-flatpak install flathub com.github.johnfactotum.Foliate
-flatpak run com.github.johnfactotum.Foliate
-
 flatpak install flathub org.inkscape.Inkscape
-flatpak run org.inkscape.Inkscape
-
-flatpak install flathub com.skype.Client
-flatpak run com.skype.Client
- 
 flatpak install flathub org.gabmus.notorious
-
-flatpak install flathub com.slack.Slack
-flatpak run com.slack.Slack
-
 flatpak install flathub org.gnome.GTG
-
 flatpak install flathub com.avocode.Avocode
+
+## Utils 
+flatpak install flathub org.videolan.VLC
+flatpak install flathub com.transmissionbt.Transmission
+
+
+## Communication
+flatpak install flathub us.zoom.Zoom
+flatpak install flathub com.slack.Slack
+flatpak install flathub org.telegram.desktop
+flatpak install flathub com.skype.Client
+
+### GPU 
+flatpak install flathub com.leinardi.gst
+flatpak install flathub com.leinardi.gwe
 
 ### Education
 flatpak install flathub org.kde.gcompris
 flatpak install flathub org.kde.ktuberling
+flatpak install flathub io.freetubeapp.FreeTube
 
+## Games
+flatpak install flathub org.libretro.RetroArch
+flatpak install https://flatpak.citra-emu.org/citra-canary.flatpakref
+
+# Drive
 flatpak install flathub com.dropbox.Client
 flatpak install flathub io.github.liberodark.OpenDrive
 
-flatpak install flathub io.freetubeapp.FreeTube
-
 flatpak install flathub org.srb2.SRB2
 
+# Office
 flatpak install flathub org.libreoffice.LibreOffice
 flatpak install flathub org.jamovi.jamovi
+flatpak install flathub com.calibre_ebook.calibre
 flatpak install flathub com.github.alainm23.planner
+flatpak install flathub com.github.johnfactotum.Foliate

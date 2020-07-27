@@ -6,10 +6,8 @@ sudo apt-get install -y smartmontools tlp tlp-rdw lm-sensors powertop htop
 ## Install snaps
 sudo apt install snapd
 
-sudo snap install spotify
 sudo snap install chromium
 sudo snap install tor
-sudo snap install utorrent
 sudo snap install snap-store
 sudo snap install journey
 
@@ -18,27 +16,21 @@ sudo snap install zenkit
 # sudo snap install wavebox
 sudo snap install tusk
 
-
-sudo snap install telegram-desktop
-
 # cloud 
 sudo snap install aws-cli --classic
 sudo snap install heroku --classic
 
 #development
 sudo snap install code --classic
-sudo snap install atom --classic
 sudo snap install docker
 sudo snap install cacher
 sudo snap install dataexplore
-sudo snap install neuronify
-# sudo snap install gitkraken
 sudo snap install insomnia
 sudo snap install ripgrep --classic
-sudo apt-get install vim 
-
 sudo snap install beekeeper-studio # sql client 
 sudo snap install robo3t-snap # mongo client 
+
+sudo apt-get install vim xclip git
 
 # photo/video
 sudo snap install blender --classic
@@ -56,38 +48,35 @@ sudo add-apt-repository ppa:w-vollprecht/ppa
 # dropbox
 
 sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
-sudo add-apt-repository -y "deb http://dl.google.com/linux/chrome/deb/ stable main"
-sudo add-apt-repository -y "deb http://dl.google.com/linux/talkplugin/deb/ stable main"
 
-sudo add-apt-repository -y ppa:tuxpoldo/btsync
-sudo add-apt-repository -y ppa:stefansundin/truecrypt
-sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59
-#sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
 
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+# chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
+
+
 
 # basic update
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
-sudo apt-get install apt-transport-https ca-certificates linux-image-extra-$(uname -r)
+sudo apt-get install apt-transport-https ca-certificates
 
-# sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 # install apps
 sudo apt-get -y install \
-    libxss1 git gitk gitg filezilla \
-    gimp p7zip p7zip-full p7zip-rar  \
-    indicator-multiload curl gparted dkms google-chrome-stable \
-    mcrypt ssmtp mailutils mpack truecrypt\
-    google-talkplugin linux-headers-generic \
-    tp-smapi-dkms thinkfan moc vlc guake tuxguitar\
-    build-essential python python3-dev python-pip python3-pip python-dev \
-	nodejs 
-
+    libxss1 filezilla \
+    p7zip p7zip-full p7zip-rar  \
+    indicator-multiload gparted dkms \
+    mcrypt ssmtp mailutils mpack truecrypt \
+    linux-headers-generic \
+    tp-smapi-dkms tuxguitar
+    
+# install dev apps 
+sudo apt-get -y install git gitk gitg build-essential python3-dev python3-pip curl nodejs guake python-is-python3 \ 
+    silversearcher-ag zsh fonts-powerline libpq-dev xsel 
+# DOCKER
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(. /etc/os-release; echo "$UBUNTU_CODENAME") stable"
@@ -103,11 +92,29 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 
 # ruby
 sudo apt install rbenv
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 rbenv install 2.7.1
+rbenv rehash 
+
 gem install bundler
 
-# tmux
-suto apt-get install tmux 
+##### tmux
+VERSION=3.1
+sudo apt-get -y remove tmux
+sudo apt-get -y install wget tar libevent-dev libncurses-dev
+wget https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
+tar xf tmux-${VERSION}.tar.gz
+rm -f tmux-${VERSION}.tar.gz
+cd tmux-${VERSION}
+./configure
+make
+sudo make install
+cd -
+sudo rm -rf /usr/local/src/tmux-*
+sudo mv tmux-${VERSION} /usr/local/src
+
+# 
 
 # fasd, for fast search dirs and files 
 sudo add-apt-repository ppa:aacebedo/fasd
@@ -116,20 +123,9 @@ sudo apt-get install fasd
 
 #### DATA 
 
-# TENSORFLOW 
-
-# export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
-# sudo pip3 install --upgrade $TF_BINARY_URL
-
 ## jupyter
-pip3 install jupyter bpython ipython
+pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch tensorflow scikit-learn 
 
-##### heroku
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
-sudo apt-get install zsh
-
-## silver searcher
-sudo apt-get install silversearcher-ag
 
 
