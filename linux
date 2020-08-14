@@ -18,6 +18,7 @@ sudo snap install journey
 sudo snap install zenkit
 # sudo snap install wavebox
 sudo snap install tusk
+sudo snap install espanso --classic # text expander
 
 # cloud 
 sudo snap install aws-cli --classic
