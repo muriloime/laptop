@@ -25,6 +25,9 @@ sudo snap install aws-cli --classic
 sudo snap install heroku --classic
 
 #development
+sudo snap install universal-ctags
+sudo snap connect universal-ctags:dot-ctags
+
 sudo snap install code --classic
 sudo snap install docker
 sudo snap install cacher
@@ -133,3 +136,6 @@ pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch tensorf
 
 
 
+## Rust
+
+curl https://sh.rustup.rs -sSf | sh 
