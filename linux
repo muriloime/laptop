@@ -22,11 +22,11 @@ sudo apt install copyq
 sudo snap install zenkit
 # sudo snap install wavebox ## multi apps client
 # sudo snap install tusk ## evernote client
-sudo snap install espanso --classic ## text expander
+sudo snap install espanso --classic --channel=latest/edge ## text expander
 
 # cloud 
-        sudo snap install aws-cli --classic
-        sudo snap install heroku --classic
+sudo snap install aws-cli --classic
+sudo snap install heroku --classic
 
 #development
 sudo snap install universal-ctags
