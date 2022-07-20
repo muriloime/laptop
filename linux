@@ -12,17 +12,21 @@ sudo apt install snapd
 sudo snap install chromium
 sudo snap install tor
 sudo snap install snap-store
-sudo snap install journey
+
+## Install copyq, allows you to multi copy and paste from the clipboard
+sudo add-apt-repository ppa:hluk/copyq
+sudo apt update
+sudo apt install copyq
 
 # work
 sudo snap install zenkit
-# sudo snap install wavebox
-sudo snap install tusk
-sudo snap install espanso --classic # text expander
+# sudo snap install wavebox ## multi apps client
+# sudo snap install tusk ## evernote client
+sudo snap install espanso --classic ## text expander
 
 # cloud 
-sudo snap install aws-cli --classic
-sudo snap install heroku --classic
+        sudo snap install aws-cli --classic
+        sudo snap install heroku --classic
 
 #development
 sudo snap install universal-ctags
@@ -68,7 +72,7 @@ rm google-chrome-stable_current_amd64.deb
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
-sudo apt-get install apt-transport-https ca-certificates
+    sudo apt-get install apt-transport-https ca-certificates
 
 
 # install apps
