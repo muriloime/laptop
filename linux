@@ -147,3 +147,10 @@ curl https://sh.rustup.rs -sSf | sh
 # mise
 
 curl https://mise.run | sh
+
+# slack 
+
+
+# if needed, find the latest version from https://slack.com/release-notes/linux
+wget https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
+sudo dpkg -i slack-desktop-4.38.125-amd64.deb
