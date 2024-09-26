@@ -143,3 +143,7 @@ pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch tensorf
 ## Rust
 
 curl https://sh.rustup.rs -sSf | sh 
+
+# mise
+
+curl https://mise.run | sh
