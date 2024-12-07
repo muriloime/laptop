@@ -1,6 +1,3 @@
-
-flatpak install flathub org.mozilla.firefox
-
 flatpak install flathub org.gimp.GIMP
 flatpak install flathub org.gnome.Evolution
 flatpak install flathub org.inkscape.Inkscape
@@ -8,7 +5,7 @@ flatpak install flathub org.gabmus.notorious
 flatpak install flathub org.gnome.GTG
 flatpak install flathub com.avocode.Avocode
 
-## Utils 
+## Utils
 flatpak install flathub org.videolan.VLC
 flatpak install flathub com.transmissionbt.Transmission
 
@@ -34,13 +31,14 @@ flatpak install https://flatpak.citra-emu.org/citra-canary.flatpakref
 
 # Drive
 flatpak install flathub com.dropbox.Client
-flatpak install flathub io.github.liberodark.OpenDrive
+# flatpak install flathub io.github.liberodark.OpenDrive
 
-flatpak install flathub org.srb2.SRB2
+# flatpak install flathub org.srb2.SRB2
 
 # Office
 flatpak install flathub org.libreoffice.LibreOffice
-flatpak install flathub org.jamovi.jamovi
+# flatpak install flathub org.jamovi.jamovi
 flatpak install flathub com.calibre_ebook.calibre
 flatpak install flathub com.github.alainm23.planner
 flatpak install flathub com.github.johnfactotum.Foliate
+flatpak run com.wps.Office
