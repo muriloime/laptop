@@ -18,27 +18,24 @@ sudo apt update
 sudo apt install copyq
 
 # work
-# sudo snap install zenkit
-# sudo snap install wavebox ## multi apps client
-# sudo snap install tusk ## evernote client
-sudo snap install espanso --classic --channel=latest/edge ## text expander
+wget https://github.com/espanso/espanso/releases/download/v2.2.1/espanso-debian-x11-amd64.deb
+sudo apt install ./espanso-debian-x11-amd64.deb
 
 # cloud 
 sudo snap install aws-cli --classic
 sudo snap install heroku --classic
 
 #development
-sudo snap install universal-ctags
-sudo snap connect universal-ctags:dot-ctags
+sudo apt-get install -y universal-ctags
 
-sudo snap install code --classic
-sudo snap install docker
-# sudo snap install cacher
-sudo snap install dataexplore
-sudo snap install insomnia
-sudo snap install ripgrep --classic
-# sudo snap install beekeeper-studio # sql client 
-sudo snap install robo3t-snap # mongo client 
+curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' \
+  | sudo -E distro=ubuntu codename=focal bash
+# Refresh repository sources and install Insomnia
+sudo apt-get update
+sudo apt-get install insomnia
+
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb
+sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
 
 sudo apt-get install vim xclip git
 
@@ -48,7 +45,6 @@ sudo apt-get install vim xclip git
 # sudo snap install polarr
 
 #audio, news 
-sudo snap install poddr
 # sudo snap install raven-reader
 
 
@@ -144,9 +140,12 @@ curl https://sh.rustup.rs -sSf | sh
 
 curl https://mise.run | sh
 
-# slack 
-
-
+## slack 
 # if needed, find the latest version from https://slack.com/release-notes/linux
 wget https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
 sudo dpkg -i slack-desktop-4.38.125-amd64.deb
+
+# poddr
+get https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb
+
+sudo dpkg -i poddr_2.0.0_amd64.deb
