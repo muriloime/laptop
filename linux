@@ -126,8 +126,16 @@ sudo apt-get install fasd
 
 #### DATA 
 
+## pyenv
+
+sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
+xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+curl https://pyenv.run | bash
+
 ## jupyter
-pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch tensorflow scikit-learn pyro-ppl
+pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch scikit-learn pyro-ppl
 
 
 
@@ -141,9 +149,11 @@ curl https://sh.rustup.rs -sSf | sh
 curl https://mise.run | sh
 
 ## slack 
+
 # if needed, find the latest version from https://slack.com/release-notes/linux
 wget https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
 sudo dpkg -i slack-desktop-4.38.125-amd64.deb
+
 
 # poddr
 get https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb

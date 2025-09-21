@@ -17,8 +17,12 @@ Download then execute the script:
 cd ~/code
 git clone git@github.com:muriloime/laptop.git
 cd laptop
-sh mac 2>&1 | tee ~/laptop.log
+sh linux 2>&1 | tee ~/laptop.log
+sh flatpak 2>&1 | tee ~/laptop.log
+# sh mac 2>&1 | tee ~/laptop.log
 ```
+
+
 
 [dotfiles]: https://github.com/muriloime/dotfiles
 
