@@ -162,3 +162,13 @@ sudo dpkg -i slack-desktop-4.38.125-amd64.deb
 get https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb
 
 sudo dpkg -i poddr_2.0.0_amd64.deb
+
+# linuxbrew
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+brew install gh ghq fzf peco
