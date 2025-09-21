@@ -97,7 +97,8 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 sudo apt install rbenv
 mkdir -p "$(rbenv root)"/plugins
 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-rbenv install 3.2.1
+rbenv install $(cat .ruby-version)
+rbenv global $(cat .ruby-version)
 rbenv rehash 
 
 gem install bundler
@@ -133,6 +134,8 @@ libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
 xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 curl https://pyenv.run | bash
+pyenv install $(cat .python-version)
+pyenv global $(cat .python-version)
 
 ## jupyter
 pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch scikit-learn pyro-ppl
