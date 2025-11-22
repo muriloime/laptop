@@ -5,12 +5,12 @@ sudo apt-get install -y smartmontools tlp tlp-rdw lm-sensors powertop htop
 
 sudo apt install httpie # haven't tried this. 
 
-## Install snaps
-sudo apt install snapd
+sudo add-apt-repository ppa:xtradeb/apps
+sudo apt update
 
-sudo snap install chromium
-# sudo snap install tor
-sudo snap install snap-store
+# specific pinning is sometimes required to prevent snap revert, 
+# but usually, this PPA takes precedence:
+sudo apt install chromium
 
 ## Install copyq, allows you to multi copy and paste from the clipboard
 sudo add-apt-repository ppa:hluk/copyq
@@ -21,12 +21,13 @@ sudo apt install copyq
 wget https://github.com/espanso/espanso/releases/download/v2.2.1/espanso-debian-x11-amd64.deb
 sudo apt install ./espanso-debian-x11-amd64.deb
 
-# cloud 
-sudo snap install aws-cli --classic
-sudo snap install heroku --classic
+# aws 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 
 #development
-sudo apt-get install -y universal-ctags
+sudo apt-get install -y universal-ctags ripgrep
 
 curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' \
   | sudo -E distro=ubuntu codename=focal bash
@@ -34,18 +35,11 @@ curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' \
 sudo apt-get update
 sudo apt-get install insomnia
 
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb
-sudo dpkg -i ripgrep_14.1.0-1_amd64.deb
 
 sudo apt-get install vim xclip git
 
 # photo/video
 # sudo snap install blender --classic
-# sudo snap install photoscape
-# sudo snap install polarr
-
-#audio, news 
-# sudo snap install raven-reader
 
 
 #### Add repos
@@ -77,14 +71,19 @@ sudo apt-get -y install \
     tp-smapi-dkms libyaml-dev libpq-dev
     
 # install dev apps 
-# sudo apt-get -y install git gitk gitg build-essential python3-dev python3-pip curl nodejs guake python-is-python3 \ 
-#     silversearcher-ag zsh fonts-powerline libpq-dev xsel 
-# # DOCKER
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(. /etc/os-release; echo "$UBUNTU_CODENAME") stable"
-# sudo apt-get update
-# sudo apt-get -y  install docker-ce docker-compose
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo usermod -aG docker $USER
 
