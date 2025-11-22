@@ -1,180 +1,156 @@
 #!/bin/bash
 
-# Install battery, configuration tools 
-sudo apt-get install -y smartmontools tlp tlp-rdw lm-sensors powertop htop
+set -e  # Exit on error
 
-sudo apt install httpie # haven't tried this. 
+#==============================================================================
+# SYSTEM SETUP - Initial updates and prerequisites
+#==============================================================================
 
-sudo add-apt-repository ppa:xtradeb/apps
-sudo apt update
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get install -y apt-transport-https ca-certificates curl
 
-# specific pinning is sometimes required to prevent snap revert, 
-# but usually, this PPA takes precedence:
-sudo apt install chromium
+#==============================================================================
+# APT REPOSITORIES - Add all PPAs first
+#==============================================================================
 
-## Install copyq, allows you to multi copy and paste from the clipboard
-sudo add-apt-repository ppa:hluk/copyq
-sudo apt update
-sudo apt install copyq
+sudo add-apt-repository -y ppa:xtradeb/apps
+sudo add-apt-repository -y ppa:hluk/copyq
+sudo add-apt-repository -y ppa:aacebedo/fasd
 
-# work
-wget https://github.com/espanso/espanso/releases/download/v2.2.1/espanso-debian-x11-amd64.deb
-sudo apt install ./espanso-debian-x11-amd64.deb
-
-# aws 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-
-#development
-sudo apt-get install -y universal-ctags ripgrep
-
+# Insomnia
 curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' \
   | sudo -E distro=ubuntu codename=focal bash
-# Refresh repository sources and install Insomnia
-sudo apt-get update
-sudo apt-get install insomnia
 
-
-sudo apt-get install vim xclip git
-
-# photo/video
-# sudo snap install blender --classic
-
-
-#### Add repos
-# sudo add-apt-repository ppa:w-vollprecht/ppa
-# dropbox
-# sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
-
-
-# chrome
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# sudo apt install ./google-chrome-stable_current_amd64.deb
-# rm google-chrome-stable_current_amd64.deb
-
-
-# basic update
-sudo apt-get -y update
-sudo apt-get -y upgrade
-
-sudo apt-get install apt-transport-https ca-certificates
-
-
-# install apps
-sudo apt-get -y install \
-    libxss1 filezilla \
-    p7zip p7zip-full p7zip-rar  \
-    indicator-multiload gparted dkms \
-    mcrypt ssmtp mailutils mpack truecrypt \
-    linux-headers-generic \
-    tp-smapi-dkms libyaml-dev libpq-dev
-    
-# install dev apps 
-sudo apt-get install ca-certificates curl
+# Docker
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Single update after all repos added
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+#==============================================================================
+# APT PACKAGES - Install all at once for speed
+#==============================================================================
 
+sudo apt-get install -y \
+    smartmontools tlp tlp-rdw lm-sensors powertop htop \
+    httpie \
+    chromium \
+    copyq \
+    universal-ctags ripgrep \
+    insomnia \
+    vim xclip git \
+    libxss1 filezilla \
+    p7zip p7zip-full p7zip-rar \
+    indicator-multiload gparted dkms \
+    mcrypt ssmtp mailutils mpack \
+    linux-headers-generic \
+    tp-smapi-dkms libyaml-dev libpq-dev \
+    docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+    postgresql-client-common postgresql postgresql-contrib \
+    rbenv \
+    wget tar libevent-dev libncurses-dev \
+    fasd \
+    build-essential libssl-dev zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev llvm libncursesw5-dev \
+    xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+# Docker user setup
 sudo usermod -aG docker $USER
 
-sudo apt-get install postgresql-client-common postgresql postgresql-contrib 
+#==============================================================================
+# DOWNLOADED .DEB PACKAGES
+#==============================================================================
 
-# not snaps
+# Espanso
+wget -q https://github.com/espanso/espanso/releases/download/v2.2.1/espanso-debian-x11-amd64.deb
+sudo apt install -y ./espanso-debian-x11-amd64.deb
+rm espanso-debian-x11-amd64.deb
+
+# Slack
+wget -q https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
+sudo dpkg -i slack-desktop-4.38.125-amd64.deb
+rm slack-desktop-4.38.125-amd64.deb
+
+# Poddr
+wget -q https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb
+sudo dpkg -i poddr_2.0.0_amd64.deb
+rm poddr_2.0.0_amd64.deb
+
+#==============================================================================
+# STANDALONE INSTALLERS
+#==============================================================================
+
+# AWS CLI
+curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -q awscliv2.zip
+sudo ./aws/install
+rm -rf aws awscliv2.zip
+
+# Calibre
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
-# ruby
-sudo apt install rbenv
-mkdir -p "$(rbenv root)"/plugins
-git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
-rbenv rehash 
+#==============================================================================
+# TMUX - Build from source
+#==============================================================================
 
-gem install bundler
-
-##### tmux
 VERSION=3.1
 sudo apt-get -y remove tmux
-sudo apt-get -y install wget tar libevent-dev libncurses-dev
-wget https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
+wget -q https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
 tar xf tmux-${VERSION}.tar.gz
 rm -f tmux-${VERSION}.tar.gz
 cd tmux-${VERSION}
-./configure
-make
-sudo make install
+./configure && make && sudo make install
 cd -
 sudo rm -rf /usr/local/src/tmux-*
 sudo mv tmux-${VERSION} /usr/local/src
 
-# 
+#==============================================================================
+# LANGUAGE VERSION MANAGERS
+#==============================================================================
 
-# fasd, for fast search dirs and files 
-sudo add-apt-repository ppa:aacebedo/fasd
-sudo apt-get update
-sudo apt-get install fasd
+# Ruby (rbenv)
+mkdir -p "$(rbenv root)"/plugins
+git clone --depth 1 https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+rbenv install $(cat .ruby-version)
+rbenv global $(cat .ruby-version)
+rbenv rehash
+gem install bundler
 
-#### DATA 
-
-## pyenv
-
-sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
-xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-
+# Python (pyenv)
 curl https://pyenv.run | bash
 pyenv install $(cat .python-version)
 pyenv global $(cat .python-version)
-
-## jupyter
 pip3 install jupyter bpython ipython pandas numpy scipy matplotlib torch scikit-learn pyro-ppl
 
+# Rust
+curl https://sh.rustup.rs -sSf | sh -s -- -y
 
-
-
-## Rust
-
-curl https://sh.rustup.rs -sSf | sh 
-
-# mise
-
+# Mise
 curl https://mise.run | sh
 
-## slack 
-
-# if needed, find the latest version from https://slack.com/release-notes/linux
-wget https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
-sudo dpkg -i slack-desktop-4.38.125-amd64.deb
-
-
-# poddr
-get https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb
-
-sudo dpkg -i poddr_2.0.0_amd64.deb
-
-# linuxbrew
+#==============================================================================
+# LINUXBREW & CLI TOOLS
+#==============================================================================
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
 brew install gh ghq fzf peco
 
-
-## Agent stuff
+#==============================================================================
+# NODE/NPM PACKAGES
+#==============================================================================
 
 npx https://github.com/google-gemini/gemini-cli
+npm install -g @charmland/crush
 
-npm install -g @charmland/crush # former opencode
+echo "Installation complete! Please log out and back in for group changes to take effect."
