@@ -44,14 +44,15 @@ Mac OS X tools:
 
 Unix tools:
 
+* [fzf] for better command history searching
 * [Exuberant Ctags] for indexing files for vim tab completion
 * [Git] for version control
 * [OpenSSL] for Transport Layer Security (TLS)
-* [RCM] for managing company and personal dotfiles
 * [The Silver Searcher] for finding things in files
 * [Tmux] for saving project state and switching between projects
 * [Zsh] as your shell
 
+[fzf]: https://github.com/junegunn/fzf
 [Exuberant Ctags]: http://ctags.sourceforge.net/
 [Git]: https://git-scm.com/
 [OpenSSL]: https://www.openssl.org/
@@ -59,13 +60,6 @@ Unix tools:
 [The Silver Searcher]: https://github.com/ggreer/the_silver_searcher
 [Tmux]: http://tmux.github.io/
 [Zsh]: http://www.zsh.org/
-
-Heroku tools:
-
-* [Heroku Toolbelt] and [Parity] for interacting with the Heroku API
-
-[Heroku Toolbelt]: https://toolbelt.heroku.com/
-[Parity]: https://github.com/thoughtbot/parity
 
 GitHub tools:
 
@@ -111,6 +105,14 @@ It should take less than 15 minutes to install (depends on your machine).
 
 Customize in `~/.laptop.local`
 ------------------------------
+
+### Add your SSH key to GitHub
+
+chmod +x setup_github_ssh.sh
+EMAIL="your_email@example.com" ./setup_github_ssh.sh
+
+
+## Local config
 
 Your `~/.laptop.local` is run at the end of the Laptop script.
 Put your customizations there.
