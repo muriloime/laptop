@@ -16,7 +16,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl
 
 sudo add-apt-repository -y ppa:xtradeb/apps
 sudo add-apt-repository -y ppa:hluk/copyq
-sudo add-apt-repository -y ppa:aacebedo/fasd
+# sudo add-apt-repository -y ppa:aacebedo/fasd
 
 # Insomnia
 curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' \
@@ -43,6 +43,7 @@ sudo apt-get install -y \
     httpie \
     chromium \
     copyq \
+    zsh \
     universal-ctags ripgrep \
     insomnia \
     vim xclip git \
@@ -97,19 +98,15 @@ rm -rf aws awscliv2.zip
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
 #==============================================================================
-# TMUX - Build from source
-#==============================================================================
+#=============================================================================
+# TMUX - Build from source (extracted)
+#=============================================================================
 
-VERSION=3.1
-sudo apt-get -y remove tmux
-wget -q https://github.com/tmux/tmux/releases/download/${VERSION}/tmux-${VERSION}.tar.gz
-tar xf tmux-${VERSION}.tar.gz
-rm -f tmux-${VERSION}.tar.gz
-cd tmux-${VERSION}
-./configure && make && sudo make install
-cd -
-sudo rm -rf /usr/local/src/tmux-*
-sudo mv tmux-${VERSION} /usr/local/src
+# The TMUX build/install logic was extracted to `scripts/install-tmux.sh`.
+# Run it directly with an optional VERSION env var, e.g.:
+#   VERSION=3.6a bash ./scripts/install-tmux.sh
+
+bash ./scripts/install-tmux.sh
 
 #==============================================================================
 # LANGUAGE VERSION MANAGERS
