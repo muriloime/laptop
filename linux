@@ -71,14 +71,15 @@ sudo usermod -aG docker $USER
 #==============================================================================
 
 # Espanso
-wget -q https://github.com/espanso/espanso/releases/download/v2.2.1/espanso-debian-x11-amd64.deb
+wget -q https://github.com/espanso/espanso/releases/download/v2.3.0/espanso-debian-x11-amd64.deb
 sudo apt install -y ./espanso-debian-x11-amd64.deb
 rm espanso-debian-x11-amd64.deb
 
 # Slack
-wget -q https://downloads.slack-edge.com/releases/linux/4.38.125/prod/x64/slack-desktop-4.38.125-amd64.deb
-sudo dpkg -i slack-desktop-4.38.125-amd64.deb
-rm slack-desktop-4.38.125-amd64.deb
+# https://slack.com/intl/en-gb/downloads/linux
+wget -q https://downloads.slack-edge.com/releases/linux/4.47.69/prod/x64/slack-desktop-4.47.69-amd64.deb
+sudo dpkg -i slack-desktop-4.*.deb
+rm slack-desktop-4.*.deb
 
 # Poddr
 wget -q https://github.com/Sn8z/Poddr/releases/download/2.0.0/poddr_2.0.0_amd64.deb
@@ -103,11 +104,13 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 # TMUX - Build from source (extracted)
 #=============================================================================
 
-# The TMUX build/install logic was extracted to `scripts/install-tmux.sh`.
-# Run it directly with an optional VERSION env var, e.g.:
-#   VERSION=3.6a bash ./scripts/install-tmux.sh
+VERSION=3.6a bash ./scripts/install-tmux.sh
 
-bash ./scripts/install-tmux.sh
+#=============================================================================
+# Claude code helpers - tts, etc
+#=============================================================================
+
+bash ./scripts/install-tts.sh
 
 #==============================================================================
 # LANGUAGE VERSION MANAGERS
@@ -147,6 +150,11 @@ brew install gh ghq fzf peco
 #==============================================================================
 # NODE/NPM PACKAGES
 #==============================================================================
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+nvm install --lts
+
 
 npx https://github.com/google-gemini/gemini-cli
 npm install -g @charmland/crush
